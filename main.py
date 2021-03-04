@@ -63,7 +63,7 @@ class Product:
         for element in records:
             self.tree.delete(element)
         # getting data
-        query = 'SELECT * FROM product ORDER BY name DESC'
+        query = 'SELECT * FROM product ORDER BY id DESC'
         db_rows = self.run_query(query)
         # filling data
         for row in db_rows:
