@@ -64,7 +64,7 @@ class Product:
         for element in records:
             self.tree.delete(element)
         # getting data
-        query = 'SELECT * FROM product ORDER BY id DESC'
+        query = 'SELECT * FROM product ORDER BY id ASC' #DESC or ASC
         db_rows = self.run_query(query)
         # filling data
         for row in db_rows:
@@ -77,7 +77,7 @@ class Product:
     def add_product(self):
         if self.validation():
             query = 'INSERT INTO product VALUES(NULL, ?, ?)'
-            parameters =  (self.name.get(), self.price.get())
+            parameters =  (self.name.get(), utils.comma_format(int(self.price.get())))
             self.run_query(query, parameters)
             self.message['text'] = 'Product {} added Successfully'.format(self.name.get())
             self.name.delete(0, END)
