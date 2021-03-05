@@ -137,7 +137,7 @@ class Product:
         parameters = (new_name, new_price,name, old_price)
         self.run_query(query, parameters)
         self.edit_wind.destroy()
-        self.message['text'] = 'Record {} updated successfylly'.format(name)
+        self.message['text'] = 'Record {} updated successfully'.format(name)
         self.get_products()
 
 if __name__ == '__main__':
