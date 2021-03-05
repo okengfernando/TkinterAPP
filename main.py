@@ -3,6 +3,7 @@ from tkinter import *
 
 import sqlite3
 
+import utils
 class Product:
     # connection dir property
     db_name = 'plsql.db'
@@ -10,7 +11,7 @@ class Product:
     def __init__(self, window):
         # Initializations 
         self.wind = window
-        self.wind.title('Products Application')
+        self.wind.title('SAGE')
 
         # Creating a Frame Container 
         frame = LabelFrame(self.wind, text = 'Register new Product')
