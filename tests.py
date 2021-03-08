@@ -5,7 +5,8 @@ class driverCodeTests(unittest.TestCase):
     def test_dummy(self):
         pass
 
-    def test_
+    def test_query(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
