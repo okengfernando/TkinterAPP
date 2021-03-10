@@ -51,6 +51,9 @@ class Product:
 
     # Function to Execute Database Querys
     def run_query(self, query, parameters = ()):
+        '''
+        Helper Fuction to run Queries
+        '''
         with sqlite3.connect(self.db_name) as conn:
             cursor = conn.cursor()
             result = cursor.execute(query, parameters)
@@ -59,6 +62,9 @@ class Product:
 
     # Get Products from Database
     def get_products(self):
+        '''
+        fetch products from our sqliteDB
+        '''
         # cleaning Table 
         records = self.tree.get_children()
         for element in records:
@@ -72,9 +78,15 @@ class Product:
 
     # User Input Validation
     def validation(self):
+        '''
+        Validate user input to avoid null values
+        '''
         return len(self.name.get()) != 0 and len(self.price.get()) != 0
 
     def add_product(self):
+        '''
+        Add products to the db
+        '''
         if self.validation():
             query = 'INSERT INTO product VALUES(NULL, ?, ?)'
             parameters =  (self.name.get(), utils.comma_format(int(self.price.get())))
@@ -87,6 +99,9 @@ class Product:
         self.get_products()
 
     def delete_product(self):
+        '''
+        delete product by ID from the SQLITEDB
+        '''
         self.message['text'] = ''
         try:
            self.tree.item(self.tree.selection())['text'][0]
@@ -102,6 +117,9 @@ class Product:
         self.get_products()
 
     def edit_product(self):
+        '''
+        Edit data from the DB
+        '''
         self.message['text'] = ''
         try:
             self.tree.item(self.tree.selection())['values'][0]
@@ -133,6 +151,9 @@ class Product:
         self.edit_wind.mainloop()
 
     def edit_records(self, new_name, name, new_price, old_price):
+        '''
+        Edit data
+        '''
         query = 'UPDATE product SET name = ?, price = ? WHERE name = ? AND price = ?'
         parameters = (new_name, new_price,name, old_price)
         self.run_query(query, parameters)
